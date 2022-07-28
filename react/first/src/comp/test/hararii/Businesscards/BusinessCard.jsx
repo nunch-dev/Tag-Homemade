@@ -1,13 +1,15 @@
 import React from "react";
 
 const BusinessCard = (props) => {
+    const {company,email,name,phoneNumber,team}= props.info
+
 
     return (<div>
-        <p>company : {props.company}</p>
-        <p>email : {props.email}</p>
-        <p>name :  {props.name}</p>
-        <p>phoneNumber :{props.phoneNumber}</p>
-        <p>team : {props.team}  </p>
+        <p>company : {company}</p>
+        <p>email : {email}</p>
+        <p>name :  {name}</p>
+        <p>phoneNumber :{phoneNumber}</p>
+        <p>team : {team}  </p>
     </div>)
 }
 
