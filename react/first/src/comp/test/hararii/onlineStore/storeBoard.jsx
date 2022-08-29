@@ -4,18 +4,21 @@ import ProductsTable from "./productTable";
 
 const StoreBoard = (props) => {
 
-    const { products, fillters, discount } = props;
-    const targetproducts = products.filter(p => p.names === fillters.text);
-    //원래 있었던 products에서 필터로 가져온 text값으로 필터를 돌린다. 그리고 
-    //fillters의 값은 계속 변한다. 
-    const filtetproducts = targetproducts.length > 0 ? targetproducts : products;
+    // NOTE 오타수정 fillters -> filter
+    const { products, filter, discount } = props;
+    // NOTE targetproducts -> targetProducts lowerCamelCase 유지
+    const targetProducts = products.filter(p => p.names === filter.text);
+    //원래 있었던 products에서 필터로 가져온 text값으로 필터를 돌린다. 그리고
+    //filter의 값은 계속 변한다.
+    // NOTE filtetproducts -> filterProducts
+    const filterProducts = targetProducts.length > 0 ? targetProducts : products;
 
     // const SportingGoods=products.filter(v => v.category==="Sporting Goods")
     // const Electronics=products.filter(v => v.category==="Electronics")
     //필터를 통해 카테고리로 나눈다. 그러나 이건 제대로된 지속 가능한 컨포넌트가 아니다.
     //만약 우리가 들어올 카테고리를 모른다면 어떻게 만들 것인가? 그것이 문제다. 확장성이 떨어짐
 
-    const result = filtetproducts.reduce((acc, cur) => {
+    const result = filterProducts.reduce((acc, cur) => {
         // reduce 빈 요소를 제외하고 배열 내에 존재하는 각 요소에 대해 callback 함수를 한 번씩 실행
         if (acc.hasOwnProperty(cur.category)) {
             //acc는 누산기 산술 논리연산을 위한 임시 기억 장소
@@ -54,7 +57,7 @@ const StoreBoard = (props) => {
                     // "Sporting Goods"여도 상관없다. 위의 Object.keys(result)로 같은 key 값끼리 모아줬으니까.
                     //인덱스는 "Sporting Goods"와 Electronics로 되어있다. 
                     key={idx}
-                    inStockOnly={fillters.inStockOnly}
+                    inStockOnly={filter.inStockOnly}
                     discount={discount} />)}
         </tbody>
     </table>)
